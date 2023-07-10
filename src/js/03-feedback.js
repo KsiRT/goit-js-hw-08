@@ -1,8 +1,12 @@
 const _ = require('lodash');
 
 const feedbackFormEl = document.querySelector('.feedback-form');
-
-const userData = {};
+const emailInput = document.querySelector('[name = email]');
+const messageInput = document.querySelector('[name = message]');
+const userData = {
+  email: '',
+  message: '',
+};
 
 const fillInputs = () => {
   let parsedUserData;
@@ -24,12 +28,8 @@ const fillInputs = () => {
 fillInputs();
 
 const onInputChange = evt => {
-  const { target } = evt;
-  console.log(target.name);
-  const nameOfInput = target.name;
-  const valueOfInput = target.value;
-  userData[nameOfInput] = valueOfInput;
-  // console.log(userData);
+  userData.email = emailInput.value;
+  userData.message = messageInput.value;
   const jsonUserData = JSON.stringify(userData);
   localStorage.setItem('feedback-form-state', jsonUserData);
 };
